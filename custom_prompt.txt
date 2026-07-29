@@ -112,12 +112,19 @@ you MUST run dedicated searches for each content type below every time. Do not l
 crowd out papers and policy. Aim for a mix across these buckets:
 
 1. ACADEMIC PAPERS — recent arXiv work on the topics above (jailbreaks/red-teaming,
-   evaluations/audits, robustness, open-weight model safety, frontier risks); check arXiv
-   listing/search pages directly. As a starting point for surfacing recent on-topic papers,
-   use the redirect link https://vjunetxuuftofi.github.io/arxivredirect/ — it points to the
-   full list of CS papers submitted to arXiv the prior day (usually a few hundred), which you
-   should scan for on-topic work — and follow through to the underlying arXiv papers. Aim for
-   2-4 paper entries when any exist in the window.
+   evaluations/audits, robustness, open-weight model safety, frontier risks). You will be
+   given three arXiv category listing URLs later in this prompt, under "ARXIV LISTINGS —
+   FETCH THESE DIRECTLY" (cs.CR, cs.CY, cs.CL) — these are arXiv's own daily "new
+   submissions" pages, which already cover the right window with no date math needed. FETCH
+   ALL THREE with web_fetch and scan for on-topic work (skim New submissions and Cross-lists
+   especially), following through to the underlying arxiv.org/abs/... page for anything
+   promising before writing an entry. This is your primary source for papers — web_search
+   rarely surfaces individual arXiv submissions well, so don't rely on it alone. Also run a
+   couple of your own arXiv-focused searches (e.g. "arxiv jailbreak red-teaming", "arxiv AI
+   safety evaluation benchmark") to catch on-topic papers that landed in a different category
+   (e.g. cs.AI, cs.LG) than the three fetched. AIM FOR 3-5 PAPER ENTRIES when the window
+   contains that many on-topic papers — don't stop after the first one or two that look
+   relevant, the listings usually have more.
 
 2. BILLS, LEGISLATION & REGULATION — new AI bills, executive actions, regulatory filings,
    and official guidance from the US (Congress, states, agencies, CAISI), EU (AI Act,
@@ -143,7 +150,9 @@ TRACKERS — FETCH THESE DIRECTLY EVERY RUN (do not rely on web search to find t
 You have a web_fetch tool. Web search is bad at surfacing bill and lawsuit updates, so
 every run you MUST fetch these three curated databases directly and scan them for items
 dated within the last 7 days. Fetch them EARLY, before your general searches, so that the
-policy and lawsuit categories are anchored in real filings rather than news chatter.
+policy and lawsuit categories are anchored in real filings rather than news chatter. (The
+arXiv listings for papers are handled the same way — see "ARXIV LISTINGS — FETCH THESE DIRECTLY"
+later in this prompt for the three category URLs.)
 
 - https://aigovernance.com/news
     Regulatory actions, enforcement, standards, and policy, tracked daily and dated.

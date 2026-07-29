@@ -75,6 +75,49 @@ Rules:
 """
 
 
+# arXiv categories to fetch directly each run, via arxiv.org's own daily "new
+# submissions" listing pages. We originally tried:
+#   - https://vjunetxuuftofi.github.io/arxivredirect/ (the link Cas used to use by hand):
+#     it's a client-side JS redirect (window.location.replace), and web_fetch doesn't
+#     execute JavaScript, so it only ever sees the empty "Redirect to Arxiv" shell.
+#   - Resolving that redirect ourselves into an arxiv.org/search/advanced URL: web_fetch
+#     rejected it with error_code=url_too_long (advanced-search URLs are ~600+ chars).
+#   - arxiv.org/api/query and export.arxiv.org/api/query: both rejected with
+#     error_code=url_not_allowed — arxiv.org's robots.txt disallows /api and /search for
+#     all crawlers, and export.arxiv.org disallows everything.
+# /list/<category>/new is explicitly allowed by robots.txt, needs no date math (arXiv
+# itself skips weekends/Mondays back to Friday), and was confirmed working end-to-end
+# through the real web_fetch tool. cs.AI/cs.LG/cs.CV run 150-350 entries with full
+# abstracts (100k+ tokens) — too large and too generically-ML to fetch wholesale; these
+# three catch the large majority of on-topic papers via cross-listing instead.
+ARXIV_CATEGORIES = {
+    "cs.CR": "Cryptography and Security — jailbreaks, red-teaming, adversarial ML",
+    "cs.CY": "Computers and Society — AI governance, policy, sociotechnical impacts",
+    "cs.CL": "Computation and Language — LLM-specific safety/eval work",
+}
+
+
+def arxiv_listing_section() -> str:
+    lines = [
+        "\n"
+        "================================================================================\n"
+        "ARXIV LISTINGS — FETCH THESE DIRECTLY, THEY ARE YOUR PRIMARY SOURCE FOR PAPERS\n"
+        "================================================================================\n"
+        "arXiv's own daily 'new submissions' pages for the three categories below. Each\n"
+        "already covers the correct window (arXiv itself skips weekends/Mondays back to\n"
+        "Friday, so no date math is needed on your end) and lists New submissions,\n"
+        "Cross-lists, and Replacements with title + abstract. FETCH ALL THREE with\n"
+        "web_fetch before relying on web_search for papers — web_search rarely surfaces\n"
+        "individual arXiv submissions well. Prioritize 'New submissions' and 'Cross-lists'\n"
+        "sections; a 'Replacement' only counts as new if it's a substantive new version,\n"
+        "per the recency rules above. De-duplicate — the same cross-listed paper often\n"
+        "appears on more than one of these three pages.\n"
+    ]
+    for cat, desc in ARXIV_CATEGORIES.items():
+        lines.append(f"- https://arxiv.org/list/{cat}/new  ({desc})\n")
+    return "".join(lines)
+
+
 def recently_covered(today_str: str) -> str:
     """Titles + URLs from the last few days' digests, so Claude can avoid repeats."""
     cutoff = datetime.now(EASTERN).date() - timedelta(days=DEDUP_LOOKBACK_DAYS)
@@ -124,7 +167,7 @@ def build_prompt() -> str:
     today = datetime.now(EASTERN).strftime("%A, %B %-d, %Y")
     return (
         f"Today is {today} (US Eastern Time).\n\n"
-        f"{brief}\n{recently_covered(today_str)}\n{OUTPUT_INSTRUCTIONS}"
+        f"{brief}\n{arxiv_listing_section()}\n{recently_covered(today_str)}\n{OUTPUT_INSTRUCTIONS}"
     )
 
 
@@ -149,7 +192,7 @@ def run_agent(client: anthropic.Anthropic, prompt: str) -> str:
             "type": "web_fetch_20250910",
             "name": "web_fetch",
             "max_uses": MAX_WEB_FETCHES,
-            "max_content_tokens": 20000,  # tracker pages are long; keep context bounded
+            "max_content_tokens": 45000,  # cs.CL's daily listing runs ~35-40k tokens w/ abstracts
         },
     ]
     # Cache the (large, stable) editorial brief so each continuation round reads it
