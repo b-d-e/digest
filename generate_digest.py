@@ -19,6 +19,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import anthropic
+import httpx
 
 MODEL = "claude-sonnet-4-6"
 EFFORT = "high"  # thinking depth / token spend: low | medium | high | max
@@ -331,7 +332,14 @@ def main() -> int:
             entries = data["entries"]
             assert isinstance(entries, list) and entries
             break
-        except (ValueError, KeyError, AssertionError, RuntimeError) as e:
+        except (
+            ValueError,
+            KeyError,
+            AssertionError,
+            RuntimeError,
+            httpx.HTTPError,
+            anthropic.APIError,
+        ) as e:
             last_error = e
             last_reply = reply
             print(f"Attempt {attempt}/3 failed: {e}")
