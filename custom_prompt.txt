@@ -137,7 +137,7 @@ crowd out papers and policy. Aim for a mix across these buckets:
    AI or AI companies, in priority order: (a) tort suits (product liability, negligence,
    wrongful death — e.g. chatbot/AI-product harms), (b) other suits against frontier
    developers (copyright/IP, privacy, consumer protection, securities), (c) government
-   enforcement (FTC, state AGs, DOJ). START by fetching the two litigation trackers listed
+   enforcement (FTC, state AGs, DOJ). START by fetching the litigation trackers listed
    under TRACKERS below — general web search is unreliable for new filings, and these are
    maintained case-by-case with dates. Then also check legal outlets (Reuters Legal, Law360,
    Bloomberg Law) and court-document sources (CourtListener/RECAP), and link the actual
@@ -148,11 +148,21 @@ crowd out papers and policy. Aim for a mix across these buckets:
 TRACKERS — FETCH THESE DIRECTLY EVERY RUN (do not rely on web search to find them)
 --------------------------------------------------------------------------------
 You have a web_fetch tool. Web search is bad at surfacing bill and lawsuit updates, so
-every run you MUST fetch these three curated databases directly and scan them for items
+every run you MUST fetch these four curated databases directly and scan them for items
 dated within the last 7 days. Fetch them EARLY, before your general searches, so that the
 policy and lawsuit categories are anchored in real filings rather than news chatter. (The
 arXiv listings for papers are handled the same way — see "ARXIV LISTINGS — FETCH THESE DIRECTLY"
 later in this prompt for the three category URLs.)
+
+MANDATORY FIRST ROUND: in your very first batch of tool calls — the same batch where you
+fetch the three arXiv listings — also issue a web_fetch call for EACH of the four tracker
+URLs below. That is seven required web_fetch calls before you run a single web_search query
+for lawsuits or policy. Do not decide from general knowledge or past runs that a tracker
+"probably has nothing new" — fetching costs nothing against your budget (12 fetches allowed,
+only 7 are mandatory) and skipping it is how real filings get missed. Before you write the
+Lawsuit or Policy sections, verify in your own head that you actually saw a tool result for
+all four tracker URLs this run — if you didn't fetch one, go back and fetch it now rather
+than falling back to web_search as a substitute.
 
 - https://aigovernance.com/news
     Regulatory actions, enforcement, standards, and policy, tracked daily and dated.
@@ -160,6 +170,10 @@ later in this prompt for the three category URLs.)
 - https://ailawsuittracker.com/cases/
     Filterable database of AI lawsuits, verified against public dockets, with filing dates
     and case numbers. The best single source for new LAWSUIT filings.
+- https://exhibitai.info/tracker/
+    Exhibit AI's litigation tracker — copyright, product liability, privacy, trademark, and
+    shareholder suits against AI companies, with filing dates, updated continuously. A second
+    good source for new LAWSUIT filings — cross-check against ailawsuittracker.com.
 - https://www.mckoolsmith.com/newsroom-ailitigation
     McKool Smith's AI litigation tracker — generative-AI infringement cases, periodic
     dated editions. Good for copyright/IP suits.
