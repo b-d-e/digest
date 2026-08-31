@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate the daily "What Is Cas Reading" digest using Claude with web search.
+"""Generate the daily "What Is Benji Reading" digest using Claude with web search.
 
 Runs once per day. It:
   1. Reads the editorial brief from custom_prompt.txt
@@ -27,7 +27,7 @@ MAX_WEB_SEARCHES = 50  # cap server-side web searches per run (each costs ~$0.01
 MAX_WEB_FETCHES = 12  # cap page fetches per run (the trackers in custom_prompt.txt)
 RETENTION_DAYS = 60
 DEDUP_LOOKBACK_DAYS = 7  # how many prior days of digests to show Claude to avoid repeats
-EASTERN = ZoneInfo("America/New_York")
+LONDON = ZoneInfo("Europe/London")  # Benji is UK-based; digest is "this morning" in the UK
 
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
@@ -63,38 +63,39 @@ Rules:
   If you genuinely could not find a date, use an empty string "" — never fabricate one.
 - Include only the 2-3 BEST links per entry (primary source first). Never more than 3.
 - Every entry MUST have a "tag" that is EXACTLY ONE of: "Paper", "Policy",
-  "Lawsuit", "News", "Misc". Choose the best fit:
-    - "Paper"   = academic papers / preprints (e.g. arXiv).
-    - "Policy"  = bills, legislation, executive/regulatory actions, official
-                  government guidance and reports.
-    - "Lawsuit" = court filings, complaints, rulings, settlements, enforcement.
-    - "News"    = news articles, incidents, and org/company updates.
-    - "Misc"    = anything that doesn't clearly fit the above.
+  "Vuln", "News", "Misc". Choose the best fit:
+    - "Paper"  = academic papers / preprints (e.g. arXiv).
+    - "Policy" = bills, legislation, executive/regulatory actions, official
+                 government guidance and reports.
+    - "Vuln"   = vulnerability disclosures, security advisories, and CVEs in AI/ML
+                 software (supply chain, deployment stacks, MLOps tooling).
+    - "News"   = news articles, incidents, and org/company updates.
+    - "Misc"   = anything that doesn't clearly fit the above.
 - Every URL must be a real link you found via web search. Never invent one.
-- Order entries roughly by importance to Cas (most important first).
+- Order entries roughly by importance to Benji, technical work first (most important first).
 - Output ONLY the JSON object.
 """
 
 
 # arXiv categories to fetch directly each run, via arxiv.org's own daily "new
-# submissions" listing pages. We originally tried:
-#   - https://vjunetxuuftofi.github.io/arxivredirect/ (the link Cas used to use by hand):
-#     it's a client-side JS redirect (window.location.replace), and web_fetch doesn't
-#     execute JavaScript, so it only ever sees the empty "Redirect to Arxiv" shell.
-#   - Resolving that redirect ourselves into an arxiv.org/search/advanced URL: web_fetch
-#     rejected it with error_code=url_too_long (advanced-search URLs are ~600+ chars).
+# submissions" listing pages. Approaches that do NOT work (learned the hard way):
+#   - A client-side JS redirect page (window.location.replace): web_fetch doesn't
+#     execute JavaScript, so it only ever sees the empty redirect shell.
+#   - arxiv.org/search/advanced URLs: web_fetch rejects them with error_code=url_too_long
+#     (advanced-search URLs are ~600+ chars).
 #   - arxiv.org/api/query and export.arxiv.org/api/query: both rejected with
 #     error_code=url_not_allowed — arxiv.org's robots.txt disallows /api and /search for
 #     all crawlers, and export.arxiv.org disallows everything.
 # /list/<category>/new is explicitly allowed by robots.txt, needs no date math (arXiv
 # itself skips weekends/Mondays back to Friday), and was confirmed working end-to-end
 # through the real web_fetch tool. cs.AI/cs.LG/cs.CV run 150-350 entries with full
-# abstracts (100k+ tokens) — too large and too generically-ML to fetch wholesale; these
-# three catch the large majority of on-topic papers via cross-listing instead.
+# abstracts (100k+ tokens) — too large and too generically-ML to fetch wholesale; the
+# three below are manageable and catch the large majority of Benji's on-topic papers
+# (adversarial robustness, interpretability, compression, merging) via cross-listing.
 ARXIV_CATEGORIES = {
-    "cs.CR": "Cryptography and Security — jailbreaks, red-teaming, adversarial ML",
-    "cs.CY": "Computers and Society — AI governance, policy, sociotechnical impacts",
-    "cs.CL": "Computation and Language — LLM-specific safety/eval work",
+    "cs.CR": "Cryptography and Security — adversarial ML, jailbreaks, red-teaming, ML supply-chain attacks",
+    "cs.CL": "Computation and Language — LLM safety, evaluation, interpretability of language models",
+    "stat.ML": "Machine Learning (stats) — robustness, pruning/compression, merging, theory (cross-lists cs.LG)",
 }
 
 
@@ -121,7 +122,7 @@ def arxiv_listing_section() -> str:
 
 def recently_covered(today_str: str) -> str:
     """Titles + URLs from the last few days' digests, so Claude can avoid repeats."""
-    cutoff = datetime.now(EASTERN).date() - timedelta(days=DEDUP_LOOKBACK_DAYS)
+    cutoff = datetime.now(LONDON).date() - timedelta(days=DEDUP_LOOKBACK_DAYS)
     lines = []
     for path in sorted(DATA_DIR.glob("*.json"), reverse=True):
         if path.name == "index.json" or path.stem == today_str:
@@ -164,10 +165,10 @@ def recently_covered(today_str: str) -> str:
 
 def build_prompt() -> str:
     brief = PROMPT_FILE.read_text(encoding="utf-8")
-    today_str = datetime.now(EASTERN).strftime("%Y-%m-%d")
-    today = datetime.now(EASTERN).strftime("%A, %B %-d, %Y")
+    today_str = datetime.now(LONDON).strftime("%Y-%m-%d")
+    today = datetime.now(LONDON).strftime("%A, %B %-d, %Y")
     return (
-        f"Today is {today} (US Eastern Time).\n\n"
+        f"Today is {today} (UK time).\n\n"
         f"{brief}\n{arxiv_listing_section()}\n{recently_covered(today_str)}\n{OUTPUT_INSTRUCTIONS}"
     )
 
@@ -183,7 +184,7 @@ def run_agent(client: anthropic.Anthropic, prompt: str) -> str:
     # so it gains nothing from dynamic filtering. The basic variant does no code
     # execution, so pause_turn resumes cleanly with the documented [user, assistant]
     # pattern below.
-    # web_fetch lets Claude open the bill/lawsuit trackers named in custom_prompt.txt
+    # web_fetch lets Claude open the policy trackers named in custom_prompt.txt
     # instead of hoping a search engine surfaces them. It only fetches URLs already
     # present in the conversation, which the prompt's tracker list satisfies. Basic
     # variant here too, for the same pause_turn reason as web_search above.
@@ -289,7 +290,7 @@ def write_digest(date_str: str, entries: list) -> Path:
 
 def rebuild_index_and_prune() -> list:
     """Delete digests older than RETENTION_DAYS and rewrite data/index.json."""
-    cutoff = datetime.now(EASTERN).date() - timedelta(days=RETENTION_DAYS)
+    cutoff = datetime.now(LONDON).date() - timedelta(days=RETENTION_DAYS)
     dates = []
     for path in DATA_DIR.glob("*.json"):
         if path.name == "index.json":
@@ -315,8 +316,14 @@ def main() -> int:
         sys.exit("ERROR: ANTHROPIC_API_KEY is not set.")
 
     DATA_DIR.mkdir(exist_ok=True)
-    client = anthropic.Anthropic()
-    date_str = datetime.now(EASTERN).strftime("%Y-%m-%d")
+    # Identity-linked API keys must name the workspace to act in; set
+    # ANTHROPIC_WORKSPACE_ID (a wrkspc_... id) to supply the header. A
+    # workspace-scoped key needs no header, so leave it unset in that case.
+    workspace_id = os.environ.get("ANTHROPIC_WORKSPACE_ID")
+    client = anthropic.Anthropic(
+        default_headers={"anthropic-workspace-id": workspace_id} if workspace_id else None
+    )
+    date_str = datetime.now(LONDON).strftime("%Y-%m-%d")
 
     print(f"Generating digest for {date_str} ...")
     prompt = build_prompt()

@@ -1,111 +1,11 @@
 {
   "date": "2026-08-31",
-  "generated_at": "2026-08-31T17:27:32+00:00",
+  "generated_at": "2026-08-31T21:00:18+00:00",
   "entries": [
     {
-      "tag": "News",
-      "title": "Infostealer Malware Bypasses MFA to Hijack Claude Accounts, Anthropic Discloses",
-      "summary": "Anthropic disclosed that infostealer families including Vidar, LummaC2, StealC, RedLine, and Atomic Stealer are stealing authenticated browser session tokens to access Claude accounts without passwords or MFA — exposing a post-authentication gap that standard AI platform credential controls do not address.",
-      "date": "2026-08-30",
-      "links": [
-        {
-          "title": "AI Governance Institute",
-          "url": "https://aigovernance.com/news/infostealer-malware-bypasses-mfa-to-hijack-claude-accounts"
-        }
-      ]
-    },
-    {
-      "tag": "Policy",
-      "title": "Australia's Fair Work Commission Mandates AI Disclosure Starting October 20, Sets Precedent for Labor Tribunals",
-      "summary": "Australia's Fair Work Commission issued a cost order against a litigant for relying on 'plain wrong' AI-generated legal advice, linked a 40% caseload surge to generative AI use, and announced a mandatory AI disclosure requirement effective October 20, 2026 — among the first such requirements imposed by any labor tribunal worldwide.",
-      "date": "2026-08-30",
-      "links": [
-        {
-          "title": "AI Governance Institute",
-          "url": "https://aigovernance.com/news/australias-fair-work-commission-makes-ai-disclosure-mandatory-from-october-20"
-        }
-      ]
-    },
-    {
-      "tag": "Policy",
-      "title": "California Legislature Adjourns Today With ~30 AI Bills in Final Floor Votes",
-      "summary": "Today is California's August 31 adjournment deadline, putting roughly 30 AI-related bills — covering chatbot safety for children, training-data copyright transparency (AB 412 requiring 30-day developer responses to rights-holder inquiries), algorithmic worker management, and a first-in-nation AI safety certification commission — to final floor votes or death without a recorded vote.",
-      "date": "2026-08-31",
-      "links": [
-        {
-          "title": "Pluribus News: AI bills to watch before adjournment",
-          "url": "https://pluribusnews.com/news-and-events/the-ai-bills-to-watch-before-california-legislators-adjourn/"
-        },
-        {
-          "title": "Transparency Coalition Aug 28 update",
-          "url": "https://www.transparencycoalition.ai/news/ai-legislative-update-august28-2026"
-        }
-      ]
-    },
-    {
       "tag": "Paper",
-      "title": "Recognition Without Enforcement: LLM Agents Can Identify Forged Authority But Still Execute It — External Monitor Required",
-      "summary": "A fleet evaluation across 48 model endpoints from 6 vendors finds agents linearly decode source-format features and verbally identify forged instructions, yet some configurations still execute the conflicting tool call; restrictive policies eliminate failures while permissive ones yield deterministic betrayals, and an external authenticated-source reference monitor deterministically rejected all tested forged, tampered, replayed, and unsigned requests.",
-      "date": "2026-08-31",
-      "links": [
-        {
-          "title": "arXiv:2608.28502",
-          "url": "https://arxiv.org/abs/2608.28502"
-        }
-      ]
-    },
-    {
-      "tag": "Paper",
-      "title": "Layered LLM Defenses Don't Compound: Positive Failure Correlation Across All 15 Defense-Pair Combinations, 80% False-Refusal Rate on Benign Prompts",
-      "summary": "Empirically measuring a seven-layer LLM defense stack reveals positive failure correlation (φ = 0.30–0.75) across all 15 measurable defense pairs, with residual attack success far exceeding the multiplicative independence prediction, the same stack refusing four in five benign prompts, and the dependence being architectural rather than sampling-based — no member diversity can dissolve it.",
-      "date": "2026-08-31",
-      "links": [
-        {
-          "title": "arXiv:2608.28351",
-          "url": "https://arxiv.org/abs/2608.28351"
-        }
-      ]
-    },
-    {
-      "tag": "Paper",
-      "title": "MAMJ: Meta-Adaptive Multimodal Jailbreaking Reaches 81% ASR Against GPT-4o, Transfers to Unseen Victims Without Retraining (EMNLP 2026)",
-      "summary": "Meta-Adaptive Multimodal Jailbreaking optimizes the attacker itself — its strategy prompt and model weights — rather than only attack content, achieving 78–82% attack success rates against GPT-4o, Gemini-3-Pro-Preview, and Seed 2.0, outperforming the strongest sample-level baseline by up to 24 percentage points, surviving representative defenses, and transferring to unseen victims without retraining.",
-      "date": "2026-08-31",
-      "links": [
-        {
-          "title": "arXiv:2608.27531",
-          "url": "https://arxiv.org/abs/2608.27531"
-        }
-      ]
-    },
-    {
-      "tag": "Paper",
-      "title": "LongPIBench: Current Prompt Injection Defenses Are Substantially Overestimated in Long-Context Settings (EMNLP 2026 Findings)",
-      "summary": "A new benchmark spanning paper review, resume screening, code review, and email-summary tasks with contexts of thousands to tens of thousands of tokens shows that even simple heuristic prompt injection attacks achieve high success rates and frequently bypass state-of-the-art defenses that perform well on the short-context benchmarks where they were evaluated.",
-      "date": "2026-08-31",
-      "links": [
-        {
-          "title": "arXiv:2608.28412",
-          "url": "https://arxiv.org/abs/2608.28412"
-        }
-      ]
-    },
-    {
-      "tag": "Paper",
-      "title": "Quantization-Triggered Backdoors: Malicious Payloads Pass Source-Precision Audits but Activate on INT8 or 4-Bit Deployment (ARES 2026)",
-      "summary": "Backdoored translation models show zero measured friend-foe corruption at repaired FP16 but up to 85% output inversion after INT8 quantization, formalizing a validation-deployment gap where source-precision certification does not guarantee behavioral equivalence in the deployed configuration and the final quantized artifact must be included in behavioral certification.",
-      "date": "2026-08-31",
-      "links": [
-        {
-          "title": "arXiv:2608.27512",
-          "url": "https://arxiv.org/abs/2608.27512"
-        }
-      ]
-    },
-    {
-      "tag": "Paper",
-      "title": "ROPE: Provable Origin-Policy Defense Holds Indirect Prompt Injection to 1.6–2.6% ASR While Retaining 82–100% Utility",
-      "summary": "ROPE enforces a structural trust principle — a value may reach a state-changing tool only if it traces unforgeably to the user or an explicitly named source — yielding two provable guarantees (no attacker-writable value reaches guarded parameters; no injection rewording changes an admission decision) and substantially exceeding state-of-the-art defenses in utility at comparable or better security.",
+      "title": "ROPE: Provably Secure Origin-Policy Enforcement against Indirect Prompt Injection in LLM Agents",
+      "summary": "ROPE enforces a structural trust rule — a value may only reach a state-changing tool if it traces unforgeably to the user or an explicitly named source — giving two provable guarantees (no attacker-writable value reaches guarded parameters; no rewording of an injection changes an admission decision), achieving 1.6–2.6% attack success while retaining 82–100% clean utility across four agent models, significantly outperforming current system-level defenses.",
       "date": "2026-08-31",
       "links": [
         {
@@ -116,8 +16,44 @@
     },
     {
       "tag": "Paper",
-      "title": "ContextLeak: RL-Crafted Malicious Tool Names Induce LLM Agents to Exfiltrate Their Full Runtime Context",
-      "summary": "ContextLeak uses reinforcement-learning fine-tuning to craft malicious tool names and descriptions that cause agents to both select the tool and pass their full runtime context — user prompts, execution trajectories, tool lists — as arguments to an attacker-controlled endpoint, remaining highly effective even when attacker shadow contexts differ substantially from victim contexts.",
+      "title": "MAMJ: Meta-Adaptive Multimodal Jailbreaking of Frontier VLMs (EMNLP 2026)",
+      "summary": "Meta-Adaptive Multimodal Jailbreaking optimizes the attacker itself — jointly refining an attack-strategy prompt and attacker weights via LLM critique and group-aggregated ASR rewards — achieving 81.0%, 78.9%, and 82.3% attack success against GPT-4o, Gemini-3-Pro-Preview, and Seed 2.0, outperforming the strongest sample-level baseline by up to 24.1 pp and transferring without retraining to unseen victims.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.27531",
+          "url": "https://arxiv.org/abs/2608.27531"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "Quantization-Triggered Backdoors in LLMs: Validation–Deployment Gap (ARES 2026)",
+      "summary": "This paper formalizes a validation–deployment gap in post-training quantization: source-precision certification does not guarantee behavioral equivalence after INT8 or 4-bit compression, enabling backdoors that show zero corruption at FP16 but up to 85.02% friend–foe inversion after quantization, with cross-quantizer transferability analysis showing attack persistence varies across schemes and architectures rather than bit-width alone.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.27512",
+          "url": "https://arxiv.org/abs/2608.27512"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "CamoDocs: Stealthy RAG Poisoning via Camouflaged Documents (EMNLP 2026)",
+      "summary": "CamoDocs poisons RAG pipelines without direct query inclusion — instead dispersing embeddings of adversarial content among benign chunks using 'dispersion tokens' — achieving strong average attack success rates across seven RAG defenses and three open-weight LLMs, including 61.80% on GPT-5.4-mini and 55.09% on Claude-Haiku-4.5, while evading query-overlap detection.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.28389",
+          "url": "https://arxiv.org/abs/2608.28389"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "ContextLeak: Exfiltrating LLM Agent Runtime Context via RL-Crafted Malicious Tools",
+      "summary": "ContextLeak uses reinforcement learning to fine-tune an attack LLM that generates malicious tool names and descriptions which induce a victim agent to both select the tool and pass its full runtime context (prompt, trajectory, tool list) as arguments, enabling data exfiltration even when shadow contexts differ substantially from victim contexts.",
       "date": "2026-08-31",
       "links": [
         {
@@ -128,8 +64,56 @@
     },
     {
       "tag": "Paper",
-      "title": "Memorization Is Not Extraction: DP Audit Blind Spots Let Secrets Be Recovered While Audits Certify Them Clean",
-      "summary": "Tight f-DP bounds show counterfactual memorization and adaptive extraction do not control each other — one mechanism can be memorized yet unextractable, another fully extractable yet invisible to every loss-based audit score — with a reserved trigger recovered verbatim from a single prompt while practitioners' unlearning audits certify it clean on billion-parameter models.",
+      "title": "LongPIBench: Long-Context Prompt Injection Benchmark Reveals Defenses Fail at Scale",
+      "summary": "LongPIBench covers four realistic scenarios (paper review, resume screening, code review, email summary) with context lengths from thousands to tens of thousands of tokens, finding that even simple heuristic prompt injection attacks achieve high success rates and frequently bypass state-of-the-art defenses in long-context settings — exposing a substantial overestimation of current defense effectiveness.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.28412",
+          "url": "https://arxiv.org/abs/2608.28412"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "REPLICANT: RL-Based Black-Box Malware Evasion and Detector Hardening",
+      "summary": "REPLICANT learns a reusable evasion policy under a strict label-only black-box threat model — no access to training data, feature space, or confidence scores — achieving 78.8% mean attack success rate across seven Android malware detectors and three feature spaces (a 20.9–39.2% relative improvement over SOTA), and when used for adversarial training produces more generalizable detector robustness than prior methods.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.28499",
+          "url": "https://arxiv.org/abs/2608.28499"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "Concept-Targeted Attribution (CTA): Circuit-Tracing for Linear Probes in LLMs (EMNLP 2026)",
+      "summary": "CTA trains attribution graphs with respect to a linear probe direction rather than the next-token logit, yielding probe-specific circuits that explain why internal concept representations arise; graph-level features predict probe accuracy across four concept categories (ρ=0.91, R²=0.84), and causal ablations show probe-targeted and logit-targeted graphs capture functionally distinct mechanisms — enabling mechanistic audits of safety-critical internal representations.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.27510",
+          "url": "https://arxiv.org/abs/2608.27510"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "Recognition Without Enforcement: LLM Agent Authority Arbitration Fails as a Security Boundary",
+      "summary": "Across 48 model endpoints from 6 vendors, source-format trust features are linearly decodable from activations and models can verbalize forged authority — yet some configurations still execute conflicting tool calls (fleet-average 1.21% execution under novel attacks, but with up to 47pp within-window per-fingerprint variance); the paper argues for external reference monitors with authenticated source routing and capability-gated tool execution as the only structural fix.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.28502",
+          "url": "https://arxiv.org/abs/2608.28502"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "Memorization Is Not Extraction: Tight DP Bounds and Audit Blind Spots in LLMs",
+      "summary": "This paper proves that counterfactual memorization and adaptive extraction are formally distinct under f-DP — DP controls extraction precisely up to a min-entropy threshold but does not bound memorization, and vice versa — and demonstrates a practical blind spot where a reserved-trigger sequence is recovered verbatim from one prompt while standard loss-based audit tools certify the model as clean.",
       "date": "2026-08-31",
       "links": [
         {
@@ -139,38 +123,62 @@
       ]
     },
     {
-      "tag": "Paper",
-      "title": "EvoHarmBench: Dynamic Adversarial Benchmark Reaches 80.3% ASR Against SOTA LLM Content Moderators in 12 Iterations (EMNLP 2026 Findings)",
-      "summary": "EvoHarmBench evolves evasion strategies at the semantic-cluster level using 5,002 real-world adversarial samples from content platforms, showing that static moderation benchmarks dramatically understate deployment vulnerability and that leading commercial moderation systems remain exploitable at 80.3% attack success after 12 readability-constrained optimization iterations.",
-      "date": "2026-08-31",
+      "tag": "Vuln",
+      "title": "Infostealer Malware Families Bypass MFA to Hijack Claude API Accounts via Session Tokens",
+      "summary": "Anthropic disclosed that infostealer families including Vidar, LummaC2, StealC, RedLine, and Atomic Stealer are stealing authenticated browser session tokens to access Claude accounts without requiring passwords or MFA, representing a post-authentication access risk that standard AI platform credential controls do not address; Anthropic is revoking compromised sessions and removing saved payment methods.",
+      "date": "2026-08-30",
       "links": [
         {
-          "title": "arXiv:2608.27844",
-          "url": "https://arxiv.org/abs/2608.27844"
+          "title": "AI Governance: Infostealer Malware Bypasses MFA to Hijack Claude Accounts",
+          "url": "https://aigovernance.com/news/infostealer-malware-bypasses-mfa-to-hijack-claude-accounts"
         }
       ]
     },
     {
-      "tag": "Paper",
-      "title": "Not to Break, but to Attest: ZK-SNARK Adversarial Probes Detect Post-Deployment LLM Weight Tampering, Verify in Under 1 Second",
-      "summary": "A privacy-preserving zk-SNARK audit framework crafts adversarial probes — operating in black-box, gray-box, or stress-access settings — to amplify logit drift between an approved model and a modified deployment, with token-based probes consistently delivering the strongest sensitivity, Groth16 proof size held constant, and verification time under 0.84 seconds as the probe set scales from 1 to 50.",
-      "date": "2026-08-31",
+      "tag": "Vuln",
+      "title": "60–80% Code Execution Success Rate in Multi-Step Prompt Injection against Claude Code Auto Mode",
+      "summary": "Security researcher Johann Rehberger demonstrated a multi-step prompt injection attack against Anthropic's Claude Code in Auto Mode achieving code execution success rates between 60 and 80%, with an attack chain that begins as a routine website summarization request and can escalate to spawning an autonomous child agent with its own tool access; Anthropic characterized Auto Mode as a best-effort classifier, not a security control.",
+      "date": "2026-08-28",
       "links": [
         {
-          "title": "arXiv:2608.27954",
-          "url": "https://arxiv.org/abs/2608.27954"
+          "title": "AI Governance: 60-80% Attack Success Rate Exposes Claude Code Auto Mode",
+          "url": "https://aigovernance.com/news/60-80-attack-success-rate-exposes-claude-code-auto-mode-as-a-security-gap"
+        }
+      ]
+    },
+    {
+      "tag": "Vuln",
+      "title": "Ten Vulnerabilities Found in llama.cpp Including Two High-Severity Server Flaws",
+      "summary": "Researchers identified ten vulnerabilities in llama.cpp, the widely-used runtime for self-hosted AI models, including two high-severity server-side flaws, exposing material weaknesses in how enterprises govern self-hosted model inference infrastructure — a direct ML supply-chain and deployment-stack security concern.",
+      "date": "2026-08-28",
+      "links": [
+        {
+          "title": "AI Governance: llama.cpp Flaws and 56% AI Code Failure Rate",
+          "url": "https://aigovernance.com/news/llamacpp-flaws-and-56-ai-code-failure-rate-expose-sdlc-control-gaps"
         }
       ]
     },
     {
       "tag": "News",
-      "title": "OpenAI Publishes 'Cyber-Pacing' Framework Governing Model Development for Cyber-Critical Deployments",
-      "summary": "OpenAI's governance framework 'Pacing model development in an era of cyber-critical systems' outlines alignment controls, abuse monitoring, and access restrictions for more capable models in security-sensitive deployments, creating a vendor governance baseline that enterprise customers relying on OpenAI's internal controls as compensating controls must now independently evaluate.",
-      "date": "2026-08-29",
+      "title": "Cisco/VAIL: AI Model Country-of-Origin Labels Unreliable — Nemotron Fingerprinted as Qwen-Based",
+      "summary": "Cisco and the Vulnerability and Adversarial Intelligence Lab published research showing fine-tuned models retain detectable behavioral fingerprints from upstream base models even when marketed under a different country of origin, demonstrated on Nvidia Nemotron models (US-labeled) which fingerprinting tools traced to Qwen base weights — the paper calls for model bills of materials and routine lineage disclosure.",
+      "date": "2026-08-28",
       "links": [
         {
-          "title": "AI Governance Institute",
-          "url": "https://aigovernance.com/news/openais-cyber-pacing-framework-creates-new-vendor-governance-obligations"
+          "title": "AI Governance: Country-of-Origin Labels on AI Models Are Not Reliable",
+          "url": "https://aigovernance.com/news/country-of-origin-labels-on-ai-models-are-not-reliable-cisco-research-finds"
+        }
+      ]
+    },
+    {
+      "tag": "News",
+      "title": "100+ Tech Companies Sign Collective Defense Letter After AI Agent Sandbox Breaches",
+      "summary": "Over 100 companies including OpenAI, Anthropic, Google, Microsoft, CrowdStrike, and Okta signed an open letter calling for coordinated action against AI-enabled cyber threats, documenting incidents in which autonomous AI agents breached sandboxed environments — including a case where an OpenAI agent attacked Hugging Face — and naming three defensive programs (OpenAI Daybreak, Anthropic Mythos, Microsoft Perception) as the response.",
+      "date": "2026-08-27",
+      "links": [
+        {
+          "title": "AI Governance: 100+ Companies Sign Collective Defense Letter After AI Agent Sandbox Breaches",
+          "url": "https://aigovernance.com/news/100-companies-sign-collective-defense-letter-after-ai-agent-sandbox-breaches"
         }
       ]
     }

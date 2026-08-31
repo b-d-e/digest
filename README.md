@@ -1,8 +1,9 @@
-# What Is Cas Reading 📖
+# What Is Benji Reading 📖
 
-A dead-simple website that publishes a **daily digest** of new papers, articles, bills,
-and policy updates on AI safety, governance, and risk — curated for
-[Stephen (Cas) Casper](https://stephencasper.com/).
+A dead-simple website that publishes a **daily digest** of new papers, tools,
+vulnerabilities, and policy on AI safety, adversarial robustness, mechanistic
+interpretability, and AI security (incl. the ML supply chain) — curated for
+[Benjamin Etheridge](https://www.robots.ox.ac.uk/~be/).
 
 Each morning, a script asks Claude (with web search) to compile ~10–20 entries, one per
 topic, each with a one-sentence summary and links. The newest digest shows at the top;
@@ -25,7 +26,7 @@ Your only costs are the domain (~$10–15/year) and a few cents of Claude API us
 
 ## Part 1 — Run it locally first
 
-You need Python 3.11+ and an Anthropic API key.
+You need [uv](https://docs.astral.sh/uv/) (which manages Python for you) and an Anthropic API key.
 
 ### 1a. Get an Anthropic API key
 1. Go to <https://console.anthropic.com/>, sign in, and open **Settings → API keys**.
@@ -34,12 +35,11 @@ You need Python 3.11+ and an Anthropic API key.
 
 ### 1b. Install and generate a digest
 ```bash
-cd whatiscasreading
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+cd whatisbenjireading
+uv sync                                 # creates the venv and installs pinned deps
 
 export ANTHROPIC_API_KEY="sk-ant-..."   # paste your key
-python generate_digest.py
+uv run generate_digest.py
 ```
 This writes a fresh `data/<today>.json` and updates `data/index.json`.
 
@@ -47,7 +47,7 @@ This writes a fresh `data/<today>.json` and updates `data/index.json`.
 Open it through a local web server (opening the file directly won't work — browsers block
 `fetch()` from `file://`):
 ```bash
-python3 -m http.server 8000
+uv run python -m http.server 8000
 ```
 Then visit <http://localhost:8000>. Edit `custom_prompt.txt`, re-run the script, refresh.
 
@@ -57,14 +57,14 @@ Then visit <http://localhost:8000>. Edit `custom_prompt.txt`, re-run the script,
 
 ### 2a. Push to GitHub
 1. Create a free account at <https://github.com> if you don't have one.
-2. Create a new **empty** repository (e.g. `whatiscasreading`), public.
+2. Create a new **empty** repository (e.g. `whatisbenjireading`), public.
 3. From this folder:
    ```bash
    git init
    git add .
    git commit -m "Initial commit"
    git branch -M main
-   git remote add origin https://github.com/<your-username>/whatiscasreading.git
+   git remote add origin https://github.com/<your-username>/whatisbenjireading.git
    git push -u origin main
    ```
 
@@ -76,23 +76,23 @@ In the repo: **Settings → Secrets and variables → Actions → New repository
 ### 2c. Turn on GitHub Pages
 **Settings → Pages → Build and deployment → Source: “Deploy from a branch”**,
 branch `main`, folder `/ (root)`, then **Save**. After a minute your site is live at
-`https://<your-username>.github.io/whatiscasreading/`.
+`https://<your-username>.github.io/whatisbenjireading/`.
 
 ### 2d. Check the daily job
 The workflow runs every morning on its own. To test it now: **Actions → Daily digest →
 Run workflow**. It generates a digest, commits it, and the commit redeploys Pages.
 
-> **Daylight-saving note:** GitHub cron is UTC-only. `0 10 * * *` lands at **6am during
-> EDT (summer)** and **5am during EST (winter)**. If you want it pinned to exactly 6am ET
-> year-round, add a second schedule line `- cron: "0 11 * * *"` and have the script no-op
-> when it's not ~6am ET — but for a morning reading list, an hour's drift is harmless.
+> **Daylight-saving note:** GitHub cron is UTC-only. `0 6 * * *` lands at **7am during
+> BST (summer)** and **6am during GMT (winter)**. If you want it pinned to exactly 6am UK
+> year-round, add a second schedule line `- cron: "0 5 * * *"` and have the script no-op
+> when it's not ~6am UK — but for a morning reading list, an hour's drift is harmless.
 
 ---
 
-## Part 3 — A custom domain (whatiscasreading.net)
+## Part 3 — A custom domain (whatisbenjireading.net)
 
 1. Buy the domain from any registrar (Namecheap, Cloudflare, Porkbun — ~$10–15/yr).
-2. In the repo: **Settings → Pages → Custom domain**, enter `whatiscasreading.net`, Save.
+2. In the repo: **Settings → Pages → Custom domain**, enter `whatisbenjireading.net`, Save.
    GitHub creates a `CNAME` file in the repo.
 3. At your registrar's DNS settings, add these records (from
    [GitHub's docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site)):
@@ -112,3 +112,12 @@ under $1/day.
 - **Change retention:** edit `RETENTION_DAYS` in `generate_digest.py`.
 - **Change the look:** edit the `<style>` block in `index.html`.
 - **Change the run time:** edit the `cron` line in `.github/workflows/daily-digest.yml`.
+
+---
+
+## Credit
+
+This is adapted from **[What Is Cas Reading](https://whatiscasreading.net/)**, the original
+daily-digest project by [Stephen (Cas) Casper](https://stephencasper.com/). The machinery
+(Claude + web search → JSON → static site → GitHub Actions) is his; this fork just re-points
+the editorial brief and branding. All credit for the idea and implementation goes to Cas.
