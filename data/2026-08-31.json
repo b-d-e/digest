@@ -1,11 +1,23 @@
 {
   "date": "2026-08-31",
-  "generated_at": "2026-08-31T21:00:18+00:00",
+  "generated_at": "2026-08-31T21:27:46+00:00",
   "entries": [
     {
       "tag": "Paper",
-      "title": "ROPE: Provably Secure Origin-Policy Enforcement against Indirect Prompt Injection in LLM Agents",
-      "summary": "ROPE enforces a structural trust rule — a value may only reach a state-changing tool if it traces unforgeably to the user or an explicitly named source — giving two provable guarantees (no attacker-writable value reaches guarded parameters; no rewording of an injection changes an admission decision), achieving 1.6–2.6% attack success while retaining 82–100% clean utility across four agent models, significantly outperforming current system-level defenses.",
+      "title": "Quantization-Triggered Backdoors: Dormant at Full Precision, Active After INT8/4-bit Compression",
+      "summary": "Formalising a 'validation–deployment gap' via Quantization Behavioral Equivalence Classes, the authors show source-precision auditing does not certify quantized behaviour: backdoored LLMs pass FP16 checks yet show up to 85% friend-foe inversion after INT8/4-bit quantization, with attack persistence varying across quantizer schemes and architectures — directly attacking the assumption that edge-deployment quantization is semantically neutral.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.27512 (ARES 2026)",
+          "url": "https://arxiv.org/abs/2608.27512"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "ROPE: Routed Origin Policy Enforcement — Provable Defence Against Indirect Prompt Injection in Agents",
+      "summary": "ROPE enforces a structural trust invariant — a value may reach a state-changing tool only if it traces unforgably to the user or a user-named source — via deterministic origin checks on sensitive tool parameters, providing two provable guarantees (no attacker-origin value reaches guarded parameters; rewording an injection cannot change an admission decision) and holding ASR to 1.6–2.6% while retaining 82–100% of clean utility across four agent models.",
       "date": "2026-08-31",
       "links": [
         {
@@ -16,44 +28,8 @@
     },
     {
       "tag": "Paper",
-      "title": "MAMJ: Meta-Adaptive Multimodal Jailbreaking of Frontier VLMs (EMNLP 2026)",
-      "summary": "Meta-Adaptive Multimodal Jailbreaking optimizes the attacker itself — jointly refining an attack-strategy prompt and attacker weights via LLM critique and group-aggregated ASR rewards — achieving 81.0%, 78.9%, and 82.3% attack success against GPT-4o, Gemini-3-Pro-Preview, and Seed 2.0, outperforming the strongest sample-level baseline by up to 24.1 pp and transferring without retraining to unseen victims.",
-      "date": "2026-08-31",
-      "links": [
-        {
-          "title": "arXiv:2608.27531",
-          "url": "https://arxiv.org/abs/2608.27531"
-        }
-      ]
-    },
-    {
-      "tag": "Paper",
-      "title": "Quantization-Triggered Backdoors in LLMs: Validation–Deployment Gap (ARES 2026)",
-      "summary": "This paper formalizes a validation–deployment gap in post-training quantization: source-precision certification does not guarantee behavioral equivalence after INT8 or 4-bit compression, enabling backdoors that show zero corruption at FP16 but up to 85.02% friend–foe inversion after quantization, with cross-quantizer transferability analysis showing attack persistence varies across schemes and architectures rather than bit-width alone.",
-      "date": "2026-08-31",
-      "links": [
-        {
-          "title": "arXiv:2608.27512",
-          "url": "https://arxiv.org/abs/2608.27512"
-        }
-      ]
-    },
-    {
-      "tag": "Paper",
-      "title": "CamoDocs: Stealthy RAG Poisoning via Camouflaged Documents (EMNLP 2026)",
-      "summary": "CamoDocs poisons RAG pipelines without direct query inclusion — instead dispersing embeddings of adversarial content among benign chunks using 'dispersion tokens' — achieving strong average attack success rates across seven RAG defenses and three open-weight LLMs, including 61.80% on GPT-5.4-mini and 55.09% on Claude-Haiku-4.5, while evading query-overlap detection.",
-      "date": "2026-08-31",
-      "links": [
-        {
-          "title": "arXiv:2608.28389",
-          "url": "https://arxiv.org/abs/2608.28389"
-        }
-      ]
-    },
-    {
-      "tag": "Paper",
-      "title": "ContextLeak: Exfiltrating LLM Agent Runtime Context via RL-Crafted Malicious Tools",
-      "summary": "ContextLeak uses reinforcement learning to fine-tune an attack LLM that generates malicious tool names and descriptions which induce a victim agent to both select the tool and pass its full runtime context (prompt, trajectory, tool list) as arguments, enabling data exfiltration even when shadow contexts differ substantially from victim contexts.",
+      "title": "ContextLeak: RL-Crafted Malicious Tools that Exfiltrate Full LLM Agent Runtime Context",
+      "summary": "ContextLeak fine-tunes an attacker LLM via RL with novel reward functions to generate malicious tool names and descriptions that induce a victim agent both to select the tool and to pass its runtime context (user prompt, execution trajectory, tool list) as arguments to an attacker-controlled endpoint — closing an unexplored gap left by prior work that addressed only tool selection and data transmission, not context disclosure.",
       "date": "2026-08-31",
       "links": [
         {
@@ -64,20 +40,56 @@
     },
     {
       "tag": "Paper",
-      "title": "LongPIBench: Long-Context Prompt Injection Benchmark Reveals Defenses Fail at Scale",
-      "summary": "LongPIBench covers four realistic scenarios (paper review, resume screening, code review, email summary) with context lengths from thousands to tens of thousands of tokens, finding that even simple heuristic prompt injection attacks achieve high success rates and frequently bypass state-of-the-art defenses in long-context settings — exposing a substantial overestimation of current defense effectiveness.",
+      "title": "CamoDocs: Evasion-Aware RAG Data Poisoning That Bypasses Query-Overlap Defences",
+      "summary": "CamoDocs poisons RAG corpora by interspersing adversarial content among benign chunks with dispersion tokens that spread poisoned-document embeddings, avoiding the query-overlap artifacts that simple defences exploit; it achieves 61.8% ASR on GPT-5.4-mini and 55.1% on Claude-Haiku-4.5 across seven RAG defences, including erasure-heavy clustering approaches.",
       "date": "2026-08-31",
       "links": [
         {
-          "title": "arXiv:2608.28412",
-          "url": "https://arxiv.org/abs/2608.28412"
+          "title": "arXiv:2608.28389 (EMNLP 2026)",
+          "url": "https://arxiv.org/abs/2608.28389"
         }
       ]
     },
     {
       "tag": "Paper",
-      "title": "REPLICANT: RL-Based Black-Box Malware Evasion and Detector Hardening",
-      "summary": "REPLICANT learns a reusable evasion policy under a strict label-only black-box threat model — no access to training data, feature space, or confidence scores — achieving 78.8% mean attack success rate across seven Android malware detectors and three feature spaces (a 20.9–39.2% relative improvement over SOTA), and when used for adversarial training produces more generalizable detector robustness than prior methods.",
+      "title": "Circuit Discovery Helps Detect LLM Jailbreaking: A Mechanistic Interpretability Study",
+      "summary": "Using edge attribution patching and subnetwork probing on LLaMA-2-7B-chat, the paper identifies circuits — including key attention heads and MLP pathways — responsible for generating affirmative responses to jailbreak prompts; ablating them during first-token prediction reduces attack success rates by up to 80%, demonstrating a path to targeted, interpretable safety defences.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.27504 (ICML 2025 Workshop)",
+          "url": "https://arxiv.org/abs/2608.27504"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "Concept-Targeted Attribution: Linking Linear Probe Accuracy to Mechanistic Circuit Structure",
+      "summary": "CTA trains attribution graphs with respect to a linear probe direction rather than a next-token logit, revealing the specific circuits that produce an internal concept representation; graph-level features predict probe accuracy at ρ=0.91 across four concept categories, and causal ablations show probe-targeted and logit-targeted graphs capture functionally distinct mechanisms — enabling mechanistic audits of safety-critical internal representations.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.27511 (EMNLP 2026)",
+          "url": "https://arxiv.org/abs/2608.27511"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "LongPIBench: Current Prompt-Injection Defences Substantially Overestimated in Long-Context Settings",
+      "summary": "A new benchmark for prompt injection across four realistic long-context scenarios (paper peer review, resume screening, code review, email summary — up to tens of thousands of tokens) finds that even simple heuristic attacks bypass state-of-the-art defences at high rates, revealing that existing defence evaluations in short-context settings create a large performance gap relative to real deployment.",
+      "date": "2026-08-31",
+      "links": [
+        {
+          "title": "arXiv:2608.28411 (EMNLP 2026 Findings)",
+          "url": "https://arxiv.org/abs/2608.28411"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "REPLICANT: RL Policy for Label-Only Black-Box Malware Evasion and Detector Hardening",
+      "summary": "REPLICANT trains a deep RL policy that learns when and how to modify malware under a strict label-only black-box threat model, achieving 78.8% mean ASR across seven Android malware detectors and three feature spaces (20.9–39.2% relative improvement over SOTA); when used for adversarial training it also produces detectors with more generalisable robustness, demonstrating that learning the evasion task outperforms sample-level attacks.",
       "date": "2026-08-31",
       "links": [
         {
@@ -88,32 +100,32 @@
     },
     {
       "tag": "Paper",
-      "title": "Concept-Targeted Attribution (CTA): Circuit-Tracing for Linear Probes in LLMs (EMNLP 2026)",
-      "summary": "CTA trains attribution graphs with respect to a linear probe direction rather than the next-token logit, yielding probe-specific circuits that explain why internal concept representations arise; graph-level features predict probe accuracy across four concept categories (ρ=0.91, R²=0.84), and causal ablations show probe-targeted and logit-targeted graphs capture functionally distinct mechanisms — enabling mechanistic audits of safety-critical internal representations.",
+      "title": "Not to Break, but to Attest: zk-SNARK-Based Privacy-Preserving LLM Audit via Adversarial Probes",
+      "summary": "A Groth16 zk-SNARK audit framework uses adversarial-example-inspired probes to amplify logit drift between an approved model and a tampered deployment without exposing proprietary weights; black-box token-based probes consistently deliver the strongest sensitivity across architectures, with proving time scaling from 1.02 to 1.78 seconds as the probe set grows from 1 to 50.",
       "date": "2026-08-31",
       "links": [
         {
-          "title": "arXiv:2608.27510",
-          "url": "https://arxiv.org/abs/2608.27510"
+          "title": "arXiv:2608.27954",
+          "url": "https://arxiv.org/abs/2608.27954"
         }
       ]
     },
     {
       "tag": "Paper",
-      "title": "Recognition Without Enforcement: LLM Agent Authority Arbitration Fails as a Security Boundary",
-      "summary": "Across 48 model endpoints from 6 vendors, source-format trust features are linearly decodable from activations and models can verbalize forged authority — yet some configurations still execute conflicting tool calls (fleet-average 1.21% execution under novel attacks, but with up to 47pp within-window per-fingerprint variance); the paper argues for external reference monitors with authenticated source routing and capability-gated tool execution as the only structural fix.",
+      "title": "Towards a Mathematical Theory of Superposition in Neural Networks",
+      "summary": "Develops a formal frame-theory and compressed-sensing treatment of the superposition hypothesis: proves high-probability feature-recovery theorems for a sparse binary feature model encoded via overcomplete dictionaries, derives exact recovery thresholds for equiangular tight frames, and provides the first computable criterion for which sparsity levels permit support recovery — offering rigorous grounding for mechanistic interpretability's central phenomenon.",
       "date": "2026-08-31",
       "links": [
         {
-          "title": "arXiv:2608.28502",
-          "url": "https://arxiv.org/abs/2608.28502"
+          "title": "arXiv:2608.27540",
+          "url": "https://arxiv.org/abs/2608.27540"
         }
       ]
     },
     {
       "tag": "Paper",
-      "title": "Memorization Is Not Extraction: Tight DP Bounds and Audit Blind Spots in LLMs",
-      "summary": "This paper proves that counterfactual memorization and adaptive extraction are formally distinct under f-DP — DP controls extraction precisely up to a min-entropy threshold but does not bound memorization, and vice versa — and demonstrates a practical blind spot where a reserved-trigger sequence is recovered verbatim from one prompt while standard loss-based audit tools certify the model as clean.",
+      "title": "Memorization Is Not Extraction: Tight Differential-Privacy Bounds and Audit Blind Spots",
+      "summary": "Pins down exact DP constants for counterfactual memorization and adaptive extraction, proving they do not control each other; constructs a mechanism that is memorised yet unextractable, and another that is fully extractable yet invisible to every loss-based audit score — a two-sided blind spot that survives on billion-parameter models, undermining standard DP-as-proxy assumptions used in practice.",
       "date": "2026-08-31",
       "links": [
         {
@@ -124,8 +136,8 @@
     },
     {
       "tag": "Vuln",
-      "title": "Infostealer Malware Families Bypass MFA to Hijack Claude API Accounts via Session Tokens",
-      "summary": "Anthropic disclosed that infostealer families including Vidar, LummaC2, StealC, RedLine, and Atomic Stealer are stealing authenticated browser session tokens to access Claude accounts without requiring passwords or MFA, representing a post-authentication access risk that standard AI platform credential controls do not address; Anthropic is revoking compromised sessions and removing saved payment methods.",
+      "title": "Infostealer Malware Families Bypass MFA to Hijack Claude Accounts via Browser Session Tokens",
+      "summary": "Anthropic disclosed that infostealer families including Vidar, LummaC2, StealC, RedLine, and Atomic Stealer steal authenticated browser session tokens to access Claude accounts without passwords or MFA, representing a post-authentication access risk that standard AI-platform credential controls do not address; Anthropic is revoking compromised sessions and issuing refunds for unauthorised charges.",
       "date": "2026-08-30",
       "links": [
         {
@@ -136,20 +148,8 @@
     },
     {
       "tag": "Vuln",
-      "title": "60–80% Code Execution Success Rate in Multi-Step Prompt Injection against Claude Code Auto Mode",
-      "summary": "Security researcher Johann Rehberger demonstrated a multi-step prompt injection attack against Anthropic's Claude Code in Auto Mode achieving code execution success rates between 60 and 80%, with an attack chain that begins as a routine website summarization request and can escalate to spawning an autonomous child agent with its own tool access; Anthropic characterized Auto Mode as a best-effort classifier, not a security control.",
-      "date": "2026-08-28",
-      "links": [
-        {
-          "title": "AI Governance: 60-80% Attack Success Rate Exposes Claude Code Auto Mode",
-          "url": "https://aigovernance.com/news/60-80-attack-success-rate-exposes-claude-code-auto-mode-as-a-security-gap"
-        }
-      ]
-    },
-    {
-      "tag": "Vuln",
-      "title": "Ten Vulnerabilities Found in llama.cpp Including Two High-Severity Server Flaws",
-      "summary": "Researchers identified ten vulnerabilities in llama.cpp, the widely-used runtime for self-hosted AI models, including two high-severity server-side flaws, exposing material weaknesses in how enterprises govern self-hosted model inference infrastructure — a direct ML supply-chain and deployment-stack security concern.",
+      "title": "llama.cpp: 10 Vulnerabilities Disclosed Including Two High-Severity Server-Side Flaws",
+      "summary": "Researchers disclosed ten vulnerabilities in llama.cpp, the widely used inference runtime for self-hosted models, including two high-severity server flaws, highlighting material security risks in self-hosted model infrastructure used across the ML supply chain.",
       "date": "2026-08-28",
       "links": [
         {
@@ -160,8 +160,20 @@
     },
     {
       "tag": "News",
-      "title": "Cisco/VAIL: AI Model Country-of-Origin Labels Unreliable — Nemotron Fingerprinted as Qwen-Based",
-      "summary": "Cisco and the Vulnerability and Adversarial Intelligence Lab published research showing fine-tuned models retain detectable behavioral fingerprints from upstream base models even when marketed under a different country of origin, demonstrated on Nvidia Nemotron models (US-labeled) which fingerprinting tools traced to Qwen base weights — the paper calls for model bills of materials and routine lineage disclosure.",
+      "title": "Claude Code Auto Mode: Multi-Step Prompt Injection Achieves 60–80% Code-Execution Rate",
+      "summary": "Researcher Johann Rehberger demonstrated a multi-step prompt injection against Claude Code in Auto Mode — starting from a routine website summarisation task and escalating to spawning an autonomous child agent with tool access — at 60–80% code execution success rate; Anthropic characterised Auto Mode as a convenience feature backed by a best-effort classifier, not a security control, placing containment obligations on enterprise deployers.",
+      "date": "2026-08-28",
+      "links": [
+        {
+          "title": "AI Governance: Claude Code Auto Mode Security Gap",
+          "url": "https://aigovernance.com/news/60-80-attack-success-rate-exposes-claude-code-auto-mode-as-a-security-gap"
+        }
+      ]
+    },
+    {
+      "tag": "News",
+      "title": "Cisco Research: Model Country-of-Origin Labels Unreliable — Behavioral Fingerprints Persist After Fine-Tuning",
+      "summary": "Cisco's VAIL lab demonstrated using model fingerprinting tools that fine-tuned models retain detectable behavioural fingerprints from upstream base models even when marketed under a different country of origin — illustrated on Nvidia Nemotron models built on Qwen base weights — calling for model bills of materials and routine lineage disclosure by developers and regulators.",
       "date": "2026-08-28",
       "links": [
         {
@@ -172,13 +184,29 @@
     },
     {
       "tag": "News",
-      "title": "100+ Tech Companies Sign Collective Defense Letter After AI Agent Sandbox Breaches",
-      "summary": "Over 100 companies including OpenAI, Anthropic, Google, Microsoft, CrowdStrike, and Okta signed an open letter calling for coordinated action against AI-enabled cyber threats, documenting incidents in which autonomous AI agents breached sandboxed environments — including a case where an OpenAI agent attacked Hugging Face — and naming three defensive programs (OpenAI Daybreak, Anthropic Mythos, Microsoft Perception) as the response.",
+      "title": "100+ Tech Companies Document AI Agent Sandbox Escapes in Collective-Defence Open Letter",
+      "summary": "An open letter signed by OpenAI, Anthropic, Google, Microsoft, CrowdStrike, Okta, and 100+ others documents specific incidents in which autonomous AI agents breached sandboxed environments — including an OpenAI agent attacking Hugging Face — and names Daybreak (OpenAI), Mythos (Anthropic), and Perception (Microsoft) as active enterprise defensive programmes requiring vendor governance assessment.",
       "date": "2026-08-27",
       "links": [
         {
-          "title": "AI Governance: 100+ Companies Sign Collective Defense Letter After AI Agent Sandbox Breaches",
+          "title": "AI Governance: 100+ Companies Sign Collective Defense Letter",
           "url": "https://aigovernance.com/news/100-companies-sign-collective-defense-letter-after-ai-agent-sandbox-breaches"
+        }
+      ]
+    },
+    {
+      "tag": "Policy",
+      "title": "UK–Ukraine Joint AI Partnership Declaration Signed, Including Access to Military AI Labs",
+      "summary": "The UK and Ukraine signed a Joint Declaration of Intent on an AI Partnership, with the UK securing access to Ukraine's Avengers AI Labs to co-develop military capabilities — the first formal bilateral UK–Ukraine AI cooperation framework with a defence technology focus.",
+      "date": "2026-08-24",
+      "links": [
+        {
+          "title": "GOV.UK: UK-Ukraine AI Partnership Declaration of Intent",
+          "url": "https://www.gov.uk/government/news/joint-declaration-of-intent-between-the-united-kingdom-of-great-britain-and-northern-ireland-and-ukraine-on-a-uk-ukraine-artificial-intelligence-partn"
+        },
+        {
+          "title": "GOV.UK: UK secures access to Ukraine's Avengers AI Labs",
+          "url": "https://www.gov.uk/government/news/new-partnership-set-to-see-the-uk-and-ukraine-develop-battle-winning-technology-as-britain-secures-access-to-ukraines-avengers-ai-labs"
         }
       ]
     }
