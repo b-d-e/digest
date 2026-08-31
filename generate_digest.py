@@ -22,8 +22,8 @@ import anthropic
 import httpx
 
 MODEL = "claude-sonnet-4-6"
-EFFORT = "high"  # thinking depth / token spend: low | medium | high | max
-MAX_WEB_SEARCHES = 50  # cap server-side web searches per run (each costs ~$0.01)
+EFFORT = "medium"  # thinking depth / token spend: low | medium | high | max
+MAX_WEB_SEARCHES = 20  # cap server-side web searches per run (each costs ~$0.01)
 MAX_WEB_FETCHES = 12  # cap page fetches per run (the trackers in custom_prompt.txt)
 RETENTION_DAYS = 60
 DEDUP_LOOKBACK_DAYS = 7  # how many prior days of digests to show Claude to avoid repeats
@@ -194,7 +194,7 @@ def run_agent(client: anthropic.Anthropic, prompt: str) -> str:
             "type": "web_fetch_20250910",
             "name": "web_fetch",
             "max_uses": MAX_WEB_FETCHES,
-            "max_content_tokens": 45000,  # cs.CL's daily listing runs ~35-40k tokens w/ abstracts
+            "max_content_tokens": 25000,  # trimmed for cost; may truncate cs.CL's ~35-40k listing
         },
     ]
     # Cache the (large, stable) editorial brief so each continuation round reads it
