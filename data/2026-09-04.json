@@ -1,0 +1,186 @@
+{
+  "date": "2026-09-04",
+  "generated_at": "2026-09-04T10:11:05+00:00",
+  "entries": [
+    {
+      "tag": "Paper",
+      "title": "HookPry: Lifecycle-Hook Supply-Chain Attack Compromises All 7 Tested AI Agent Harnesses at Up to 92.5% Success Rate",
+      "summary": "A new supply-chain threat model shows that attacker-controlled plugin updates can silently bind malicious shell commands to benign lifecycle events (session start, tool calls, file edits) in AI agent harnesses, yielding privilege escalation with no LLM involvement; across 25 harness/backend combinations Microsoft Defender achieves 0% recall and the union of three static defences misses 47.5% of malicious artifacts.",
+      "date": "2026-09-04",
+      "links": [
+        {
+          "title": "arXiv:2609.03884",
+          "url": "https://arxiv.org/abs/2609.03884"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "TRIM: Black-Box Inference-Time Backdoor Purification Without Model Internals or Training Data",
+      "summary": "TRIM identifies anomalous image regions responsible for model misbehaviour using deep-feature segmentation and purifies only those regions via inpainting/diffusion at inference time, reducing attack success rates to as low as 1.16% while preserving clean accuracy up to 87.87% across diverse backdoor trigger types — all without any access to model weights, training data, or clean reference samples.",
+      "date": "2026-09-04",
+      "links": [
+        {
+          "title": "arXiv:2609.03139",
+          "url": "https://arxiv.org/abs/2609.03139"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "AlcaTRAz: Prompt-Level Jailbreak Defense via Automatically Learned Character-Perturbation Rule Trees",
+      "summary": "AlcaTRAz learns transferable character-level perturbation rules that disrupt structural regularities exploited by jailbreak attacks without modifying model weights or needing white-box access; across 33 open-weight models and 22 attack types it achieves the best composite security/functionality score in 73.4% of model-attack combinations and shifts modal severity from 10 (full compliance) to 2 (near-refusal) while keeping benign utility within 0.27 points.",
+      "date": "2026-09-04",
+      "links": [
+        {
+          "title": "arXiv:2609.03693",
+          "url": "https://arxiv.org/abs/2609.03693"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "Probe Subspace Selection Enables OOD Deception Detection Transfer in LLMs",
+      "summary": "Projecting Llama-3.1-8B-Instruct activations onto a small subset of principal components from the training distribution achieves cross-domain deception-detection transfer nearly matching probes trained on the target distribution; LLM-scored PC interpretations can identify the transferable subspace, closing the baseline-to-oracle gap by up to 78%, suggesting OOD robustness of probes is largely a subspace-selection problem.",
+      "date": "2026-09-04",
+      "links": [
+        {
+          "title": "arXiv:2609.02893",
+          "url": "https://arxiv.org/abs/2609.02893"
+        }
+      ]
+    },
+    {
+      "tag": "News",
+      "title": "Unit 42: First Documented Fully Autonomous AI Ransomware Attack Chain Completed in Under 10 Hours",
+      "summary": "Palo Alto Networks Unit 42 incident responders documented a ransomware intrusion in which an attacker used frontier AI models and agentic frameworks to autonomously complete every phase — reconnaissance, credential theft from code repos, CI/CD pivoting, and using the victim's own AI compute to obscure orchestration traffic — in under 10 hours, voiding conventional defender response-time assumptions.",
+      "date": "2026-09-02",
+      "links": [
+        {
+          "title": "AI Governance: Unit 42 report summary",
+          "url": "https://aigovernance.com/news/unit-42-documents-first-fully-autonomous-ai-ransomware-chain-completed-in-under-10-hours"
+        }
+      ]
+    },
+    {
+      "tag": "Vuln",
+      "title": "MCP Server Audit: Active Prompt Injection in Context7, Context Injection Found Across All 19 Servers Tested",
+      "summary": "Digital Applied audited 19 MCP servers and found that tool outputs routinely inject unexpected instructions into agent context across all of them, with a specific prompt injection issue disclosed in Context7; the conclusion is that enterprises cannot treat MCP server outputs as trusted data by default, and most enterprise agent governance programs are missing pre-onboarding adversarial testing controls.",
+      "date": "2026-09-02",
+      "links": [
+        {
+          "title": "AI Governance: MCP server audit",
+          "url": "https://aigovernance.com/news/mcp-server-audit-finds-context-injection-across-19-servers-including-active-prompt"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "How Perturbations Propagate: Multi-Level Robustness Analysis Reveals Single-Metric Evaluation Is Misleading",
+      "summary": "Studying six naturalistic and synthetic input perturbations across four GPT-2 and two Qwen2.5 checkpoints at output, hidden-state geometry (CKA, intrinsic dimension), and attention-head levels shows that perturbation types produce distinguishable metric profiles not captured by output measures alone, and that gradient-guided HotFlip perturbations cause substantially stronger disruption than rate-matched random substitutions — motivating multi-level evaluation.",
+      "date": "2026-09-04",
+      "links": [
+        {
+          "title": "arXiv:2609.03322",
+          "url": "https://arxiv.org/abs/2609.03322"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "GEO Defender: Two-Stage Defense Cuts Adversarial Generative Engine Optimization Attack Success from 50% to 6%",
+      "summary": "Malicious GEO rewrites web documents to manipulate RAG-based search answers without introducing factual errors, defeating fact-checking and perplexity filtering; GEO Defender pairs a preference-residual reranker (Shield Reranker) with an inference-time experience library (TFSG) to reduce mean attack success rate from 50.32% to 6.20% across seven attack types and six LLMs without fine-tuning the target model.",
+      "date": "2026-09-04",
+      "links": [
+        {
+          "title": "arXiv:2609.02964",
+          "url": "https://arxiv.org/abs/2609.02964"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "UMPeek: Black-Box Attack Recovers Private User Information from Hidden Personalized LLM Agent User Models",
+      "summary": "Personalized LLM agents that compress user history into hidden structured 'user models' are shown to expose a new attack surface: UMPeek uses hypothesis-guided adaptive probing over ordinary follow-up tasks to infer private user information from visible agent behaviour, outperforming existing attacks on benchmarks and real-world systems and continuing to work under response-level defences.",
+      "date": "2026-09-04",
+      "links": [
+        {
+          "title": "arXiv:2609.03815",
+          "url": "https://arxiv.org/abs/2609.03815"
+        }
+      ]
+    },
+    {
+      "tag": "News",
+      "title": "215,000 Machine-Generated Fake AI Buying Guides Poison RAG Procurement Pipelines",
+      "summary": "Trellner Research found three coordinated websites that published over 215,000 LLM-generated software recommendation pages designed to be retrieved by AI systems; 59.8% of citations returned by Perplexity in tested categories pointed to domains outside the top 100,000 most-visited sites, exposing a direct supply-chain integrity risk in enterprise AI-grounded procurement workflows.",
+      "date": "2026-09-02",
+      "links": [
+        {
+          "title": "AI Governance: RAG procurement poisoning",
+          "url": "https://aigovernance.com/news/215000-fake-ai-buying-guides-are-poisoning-rag-procurement-pipelines"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "Conversational False Authentication: LLMs Self-Issue Identity Credentials, Qwen and Mistral Accept Fabricated Developer Claims",
+      "summary": "A staged developer-identity experiment across ChatGPT, Claude, Qwen, Mistral, and Llama shows Qwen and Mistral generate technical challenges, evaluate answers, and return 'Verified' for the attacker's unsupported identity claim (Conversational False Authentication), while Llama also accepts the identity and makes unsupported claims about runtime access — Claude and ChatGPT resist — identifying model-generated dialogue as a conversational security failure that must never create authorization state.",
+      "date": "2026-09-04",
+      "links": [
+        {
+          "title": "arXiv:2609.03247",
+          "url": "https://arxiv.org/abs/2609.03247"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "PatchBench: PoC-Only Validation Inflates AI Vulnerability-Patching Solve Rates by 1.83× on Average",
+      "summary": "PatchBench introduces vulnerability transplantation and code mutation to move historical CVEs into new repo contexts, reducing patch memorization, and adds semantic correctness checks beyond PoC crash suppression; testing 11 state-of-the-art agents including the top AIxCC finalists shows the standard PoC-only validation inflates the solve rate by 1.83× on average, with 25% of agent patches showing substantial similarity to historical developer patches.",
+      "date": "2026-09-04",
+      "links": [
+        {
+          "title": "arXiv:2609.04075",
+          "url": "https://arxiv.org/abs/2609.04075"
+        }
+      ]
+    },
+    {
+      "tag": "Paper",
+      "title": "Contextual Knowledge Conflicts in LLMs: Mechanistic Insights and Activation-Steering Correction",
+      "summary": "Introducing a taxonomy of six contextual conflict types and a 5,781-sample benchmark, experiments on nine LLMs reveal a consistent positional bias toward earlier evidence as a key failure mode; mechanistic analysis uncovers latent conflict awareness in representations, and a training-free activation-steering method improves reasoning accuracy and produces more balanced summaries without labels.",
+      "date": "2026-09-04",
+      "links": [
+        {
+          "title": "arXiv:2609.03148",
+          "url": "https://arxiv.org/abs/2609.03148"
+        }
+      ]
+    },
+    {
+      "tag": "Policy",
+      "title": "UK Cyber Security and Resilience Bill: Government Rejects Lords Amendments Placing AI Vendors In-Scope",
+      "summary": "The UK government rejected House of Lords amendments that would have placed AI model vendors and frontier developers within the regulatory scope of the Cyber Security and Resilience Bill, relying instead on voluntary measures (the AI Security Institute and AI Cyber Security Code of Practice), so legal obligations for agentic AI risk fall on deploying organisations such as MSPs and datacentre operators rather than model developers.",
+      "date": "2026-09-02",
+      "links": [
+        {
+          "title": "AI Governance: UK Cyber Bill analysis",
+          "url": "https://aigovernance.com/news/uk-cyber-bill-puts-agentic-ai-risk-on-enterprise-deployers-not-vendors"
+        }
+      ]
+    },
+    {
+      "tag": "Policy",
+      "title": "US Lawsuit Forces Disclosure of Trump Administration's Undisclosed Frontier AI Safety Testing Framework",
+      "summary": "Nonprofit Protect Democracy sued four federal agencies to compel public disclosure of the administration's framework governing pre-release safety reviews of frontier AI models, alleging that the identities of trusted partner companies, selection criteria, and legal authority remain hidden from Congress and the public — leaving enterprise compliance teams uncertain which models have been reviewed and under what standards.",
+      "date": "2026-09-02",
+      "links": [
+        {
+          "title": "AI Governance: Federal AI safety testing lawsuit",
+          "url": "https://aigovernance.com/news/lawsuit-forces-disclosure-of-federal-frontier-ai-safety-testing-rules"
+        }
+      ]
+    }
+  ]
+}
